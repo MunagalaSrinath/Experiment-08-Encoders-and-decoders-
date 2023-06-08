@@ -55,67 +55,81 @@ D7 = X Y Z
 ## Figure -04 8 to 3 Decoder implementation 
 
 ### Procedure
-/* write all the steps invloved */
+#### Step 1:
+Open Quartus II and select new project and choose the file location.
+
+#### Step 2:
+Module Declaration. Module should have the file name.
+
+#### Step 3:
+Input-Output Delecaration.
+
+#### Step 4:
+Use assign to define the functionality of logic circuits.
+
+#### Step 5:
+At the end give endmodule.
+
+#### Step 6:
+Run the program and choose RTL viewer to get RTL realization.
 
 
 
-### PROGRAM 
+### PROGRAM
 ```
+/*
 Program for Endocers and Decoders  and verify its truth table in quartus using Verilog programming.
 Developed by: M SRINATH
-RegisterNumber:  212222230147
+RegisterNumber: 212222230147
+*/
 ```
+#### ENCODER
 ```
-For ENCODER:
-module enc(a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
-input y0,y1,y2,y3,y4,y5,y6,y7;
-output a0,a1,a2;
-or(a0,y7,y5,y3,y1);
-or(a1,y7,y6,y3,y2);
-or(a2,y7,y6,y5,y4);
+module Encoder(a,b,c,d0,d1,d2,d3,d4,d5,d6,d7);
+input d0,d1,d2,d3,d4,d5,d6,d7;
+output a,b,c;
+or(a,d4,d5,d6,d7);
+or(b,d2,d3,d6,d7);
+or(c,d1,d3,d5,d7);
 endmodule
 ```
-
-For DECODER:
+#### DECODER
 ```
-module dec (a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
-input a0,a1,a2;
-output y0,y1,y2,y3,y4,y5,y6,y7;
-wire a0bar,a1bar,a2bar;
-not(a0bar,a0);
-not(a1bar,a1);
-not(a2bar,a2);
-and(y0,a0bar,a1bar,a2bar);
-and(y1,a0,a1bar,a2bar);
-and(y2,a0bar,a1,a2bar);
-and(y3,a0,a1,a2bar);
-and(y4,a0bar,a1bar,a2);
-and(y5,a0,a1bar,a2);
-and(y6,a0bar,a1,a2);
-and(y7,a0,a1,a2);
+module Decoder(d0,d1,d2,d3,d4,d5,d6,d7,a,b,c);
+input a,b,c;
+output d0,d1,d2,d3,d4,d5,d6,d7;
+assign d0 = (~a&~b&~c);
+assign d1 = (~a&~b&c);
+assign d2 = (~a&b&~c);
+assign d3 = (~a&b&c);
+assign d4 = (a&~b&~c);
+assign d5 = (a&~b&c);
+assign d6 = (a&b&~c);
+assign d7 = (a&b&c);
 endmodule
 ```
+## OUTPUT:
+### RTL LOGIC  
+#### ENCODER
 
-## RTL LOGIC
-### For Encoder
-![image](https://github.com/Thirukaalathessvarar-S/Experiment-08-Encoders-and-decoders-/assets/121166390/566216da-6c7b-4e2d-beb5-4195cf4ade94)
+![image](https://github.com/ATHMAJ03/Experiment-08-Encoders-and-decoders-/assets/118753139/75273fc8-25f9-47af-b815-181a3b2e4359)
 
-### For Decode
-![image](https://github.com/Thirukaalathessvarar-S/Experiment-08-Encoders-and-decoders-/assets/121166390/f5c0f64a-e4c6-4e90-8b35-0643ca694c39)
+#### DECODER
 
-## TIMING DIGRAMS  
-### For Encoder
-![image](https://github.com/Thirukaalathessvarar-S/Experiment-08-Encoders-and-decoders-/assets/121166390/79f33817-3e01-4fe8-8819-98f840d59192)
+![image](https://github.com/ATHMAJ03/Experiment-08-Encoders-and-decoders-/assets/118753139/edb7ac18-607c-4eff-a3e9-55841b8c588d)
 
-### For Decode
-![image](https://github.com/Thirukaalathessvarar-S/Experiment-08-Encoders-and-decoders-/assets/121166390/8f22e8c1-4080-4317-8d8b-9adc63762dc8)
+### TIMING DIGRAMS  
+#### ENCODER
+![image](https://github.com/ATHMAJ03/Experiment-08-Encoders-and-decoders-/assets/118753139/02f9a0e0-ce5e-410e-b140-c3d3632fa9d0)
+#### DECODER
+![image](https://github.com/ATHMAJ03/Experiment-08-Encoders-and-decoders-/assets/118753139/77c6c691-23e5-412b-970d-b6448341ec5b)
 
-## TRUTH TABLE 
-### For Encoder
-![image](https://github.com/Thirukaalathessvarar-S/Experiment-08-Encoders-and-decoders-/assets/121166390/97739daf-35de-4925-a1b2-e8181ebf50f3)
+### TRUTH TABLE 
+#### ENCODER
+![image](https://github.com/ATHMAJ03/Experiment-08-Encoders-and-decoders-/assets/118753139/4c8110c9-cf00-4eec-8b5d-2fe922c03616)
 
-### For Decoder
-![image](https://github.com/Thirukaalathessvarar-S/Experiment-08-Encoders-and-decoders-/assets/121166390/09b50642-7746-447e-b32d-96263c4a3ef1)
+#### DECODER
+![image](https://github.com/ATHMAJ03/Experiment-08-Encoders-and-decoders-/assets/118753139/449b78bc-979d-42fb-bdff-d4abdff373d2)
 
-## RESULTS 
-Thus the program to desing encoder and decoder is completed.
+### RESULTS 
+Thus, 8 to 3 Encoder and 3 to 8 Decoder is implemented using verilog and its outputs is validated.
